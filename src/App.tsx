@@ -7,10 +7,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<DashboardCrypto />} />
       </Routes>
       <Routes>
-        <Route path="/dashboardCrypto" element={<DashboardCrypto />} />
+        <Route path="/dashboardCrypto" element={<Dashboard />} />
       </Routes>
     </Router>
   );
