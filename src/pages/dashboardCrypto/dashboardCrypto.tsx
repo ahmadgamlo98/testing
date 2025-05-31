@@ -134,8 +134,8 @@ const DashboardCrypto = () => {
         <CryptoCoin data={CryptoSOLData} />
         <CryptoCoin data={CryptoBNBData} />
       </StyledBox>
-      <Box display={"flex"} gap={2}>
-        <Box bgcolor={"#E8E8E8"} borderRadius={5}>
+      <StyledBox display={"flex"} gap={2}>
+        <Box bgcolor={"#E8E8E8"} borderRadius={5} flex={2}>
           <Box margin={2}>
             <Box>
               <h3>{CryptoBTCData.s}</h3>
@@ -150,20 +150,20 @@ const DashboardCrypto = () => {
             </LineChart>
           </Box>
         </Box>
-        <Box bgcolor={"#E8E8E8"} borderRadius={5}>
+        <Box bgcolor={"#E8E8E8"} borderRadius={5} flex={1}>
           {/* <BorderBook
             coinLastPrice={coinLastPrice}
             bookOrderHistory={bookOrderHistory}
           /> */}
           <Box margin={2} alignItems={"center"}>
             <h3>Order Book</h3>
-            <Box bgcolor={"white"} borderRadius={2}>
-              <Box margin={2}>
+            <Box borderRadius={2}>
+              <Box bgcolor={"white"} margin={2}>
                 <Typography>Current Price</Typography>
                 <Typography>{formatNumber(coinLastPrice?.price)}</Typography>
               </Box>
               <Box>
-                <Typography>Sell Orders</Typography>
+                <Typography color="red">Sell Orders</Typography>
                 {bookOrderHistory?.bids.map((item, index) => {
                   if (index > 5) {
                     return;
@@ -175,7 +175,7 @@ const DashboardCrypto = () => {
                     </Box>
                   );
                 })}
-                <Typography>Buy Orders</Typography>
+                <Typography color="green">Buy Orders</Typography>
                 {bookOrderHistory?.asks.map((item, index) => {
                   if (index > 5) {
                     return;
@@ -191,7 +191,7 @@ const DashboardCrypto = () => {
             </Box>
           </Box>
         </Box>
-      </Box>
+      </StyledBox>
       <Box>
         <DataGrid
           rows={test}
