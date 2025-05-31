@@ -21,8 +21,18 @@ export type UsersContextType = {
   setUsersPaginatedContext: React.Dispatch<
     React.SetStateAction<PaginatedResponse | null>
   >;
+  socketMessageContext: SocketMessageContextProps[] | null;
+  setSocketMessageContext: React.Dispatch<
+    React.SetStateAction<SocketMessageContextProps[] | null>
+  >;
 };
 
 export type UsersProviderProps = {
   children: ReactNode;
+};
+
+export type SocketMessageContextProps = {
+  timestamp: string;
+  value: string;
+  id: string;
 };

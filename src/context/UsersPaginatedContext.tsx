@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 import {
   PaginatedResponse,
+  SocketMessageContextProps,
   UsersContextType,
   UsersProviderProps
 } from "./UsersPaginatedContext.type";
@@ -12,9 +13,18 @@ export const UsersProvider = ({ children }: UsersProviderProps) => {
   const [usersPaginatedContext, setUsersPaginatedContext] =
     useState<PaginatedResponse | null>(null);
 
+  const [socketMessageContext, setSocketMessageContext] = useState<
+    SocketMessageContextProps[] | null
+  >(null);
+
   return (
     <UsersContext.Provider
-      value={{ usersPaginatedContext, setUsersPaginatedContext }}
+      value={{
+        usersPaginatedContext,
+        setUsersPaginatedContext,
+        socketMessageContext,
+        setSocketMessageContext
+      }}
     >
       {children}
     </UsersContext.Provider>

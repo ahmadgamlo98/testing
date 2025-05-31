@@ -16,9 +16,25 @@ export type SocketProps = {
   id: string;
 };
 
+export type CryptoCoinDataProps = {
+  e: string;
+  E: number;
+  M: boolean;
+  T: number;
+  m: boolean;
+  p: string;
+  q: string;
+  s: string;
+  t: number;
+};
+
 export type DashboardState = {
   users: User[];
   socketData: SocketProps[];
+  cryptoBTCData: CryptoCoinDataProps;
+  cryptoETCData: CryptoCoinDataProps;
+  cryptoBNBData: CryptoCoinDataProps;
+  cryptoSOLData: CryptoCoinDataProps;
 };
 
 export type FetchUsersRequest = {
@@ -41,4 +57,17 @@ export type UsersPagination = {
   first_name: string;
   last_name: string;
   avatar: string;
+};
+
+export type AddUserRequest = {
+  name: string;
+  job: string;
+  id?: string;
+};
+
+export type AddUserResponse = {
+  name: string;
+  job: string;
+  id: string;
+  createdAt: string;
 };

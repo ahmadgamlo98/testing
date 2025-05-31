@@ -4,6 +4,9 @@ import axios from "axios";
 import { cacheService } from "utils/cacheService";
 
 import {
+  AddUserRequest,
+  AddUserResponse,
+  CryptoCoinDataProps,
   DashboardState,
   FetchUsersRequest,
   FetchUsersResponse,
@@ -13,7 +16,51 @@ import {
 
 const initialState: DashboardState = {
   users: [],
-  socketData: []
+  socketData: [],
+  cryptoBTCData: {
+    e: "",
+    E: 0,
+    M: false,
+    T: 0,
+    m: false,
+    p: "",
+    q: "",
+    s: "",
+    t: 0
+  },
+  cryptoETCData: {
+    e: "",
+    E: 0,
+    M: false,
+    T: 0,
+    m: false,
+    p: "",
+    q: "",
+    s: "",
+    t: 0
+  },
+  cryptoSOLData: {
+    e: "",
+    E: 0,
+    M: false,
+    T: 0,
+    m: false,
+    p: "",
+    q: "",
+    s: "",
+    t: 0
+  },
+  cryptoBNBData: {
+    e: "",
+    E: 0,
+    M: false,
+    T: 0,
+    m: false,
+    p: "",
+    q: "",
+    s: "",
+    t: 0
+  }
 };
 
 export const fetchUsers = async (
@@ -68,6 +115,48 @@ export const fetchUsersPaginated = async (
   return response.data;
 };
 
+export const addUser = async (data: AddUserRequest) => {
+  const url = data.id
+    ? `https://reqres.in/api/users/${data.id}`
+    : `https://reqres.in/api/users`;
+
+  const method = data.id ? "patch" : "post";
+
+  const response = await axios<AddUserResponse>({
+    method,
+    url,
+    data,
+    headers: {
+      " x-api-key": "reqres-free-v1"
+    }
+  });
+  return response.data;
+};
+
+export const fetchCoin = async () => {
+  const response = await axios.get(
+    "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h"
+  );
+
+  return response.data;
+};
+
+export const getLastPrice = async () => {
+  const response = await axios.get(
+    "https://api.binance.com/api/v3/ticker/price"
+  );
+
+  return response.data;
+};
+
+export const getBookOrderhistory = async () => {
+  const response = await axios.get(
+    "https://api.binance.com/api/v3/depth?symbol=BTCUSDT"
+  );
+
+  return response.data;
+};
+
 export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
@@ -90,6 +179,31 @@ export const dashboardSlice = createSlice({
     ) => {
       state.socketData = action.payload;
     },
+    setCryptoCoinDataBTC: (
+      state: DashboardState,
+      action: PayloadAction<CryptoCoinDataProps>
+    ) => {
+      state.cryptoBTCData = action.payload;
+    },
+    setCryptoCoinDataETC: (
+      state: DashboardState,
+      action: PayloadAction<CryptoCoinDataProps>
+    ) => {
+      state.cryptoETCData = action.payload;
+    },
+    setCryptoCoinDataSOL: (
+      state: DashboardState,
+      action: PayloadAction<CryptoCoinDataProps>
+    ) => {
+      state.cryptoSOLData = action.payload;
+    },
+    setCryptoCoinDataBNB: (
+      state: DashboardState,
+      action: PayloadAction<CryptoCoinDataProps>
+    ) => {
+      state.cryptoBNBData = action.payload;
+    },
+
     reset: () => initialState
   }
 });

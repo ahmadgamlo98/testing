@@ -19,6 +19,13 @@ export const StyledBox = styled(Box)`
   flex-direction: row;
 
   @media (max-width: 500px) {
-    flex-direction: row;
+    flex-direction: column;
   }
+`;
+
+export const StyledImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
 `;
